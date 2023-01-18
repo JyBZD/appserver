@@ -1,13 +1,12 @@
-<div class="d-flex navbar">
-	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills">
+	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs justify-content-center">
 		<li ngbNavItem="home">
-			<a ngbNavLink>Blog</a>
+			<a  type="button" class="btn btn-outline-dark" ngbNavLink>Public</a>
 			<ng-template ngbNavContent>
 				<p>
 
 
 
-Blog posts
+Public Posts
 
 
 
@@ -17,7 +16,7 @@ Blog posts
 			</ng-template>
 		</li>
 		<li ngbNavItem="about">
-			<a ngbNavLink>About</a>
+			<a  type="button" class="btn btn-outline-dark" ngbNavLink>About</a>
 			<ng-template ngbNavContent>
 				<p>
 				About placeholder
@@ -25,34 +24,22 @@ Blog posts
 			</ng-template>
 		</li>
 		<li ngbNavItem="register">
-			<a ngbNavLink>Register</a>
+			<a  type="button" class="btn btn-outline-dark" ngbNavLink>Private</a>
 			<ng-template ngbNavContent>
-				<button type="button" class="btn btn-primary" (click)="openModal(content)">Create Account</button>
+		  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+      <div class="form-group">
+        <label for="email"></label>
+        <input type="email" class="form-control" id="email" name="email" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="password"></label>
+        <input type="password" class="form-control" id="password" name="password" ngModel><hr />
+      </div>
+      <br>
+      <button  type="submit" class="btn btn-outline-primary" >Enter</button>
+    </form>
 			</ng-template>
 		</li>
 	</ul>
 
-</div>
-
- <div [ngbNavOutlet]="nav" class="ms-4"></div>
-
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title"></h4>
-                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" ngModel>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" ngModel>
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">Submit</button>
-    </form>
-  </div>
-</ng-template>
-
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
