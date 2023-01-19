@@ -1,45 +1,81 @@
-	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs justify-content-center">
-		<li ngbNavItem="home">
-			<a  type="button" class="btn btn-outline-dark" ngbNavLink>Public</a>
-			<ng-template ngbNavContent>
-				<p>
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active"  class="nav-tabs justify-content-center" style="padding:20px" >
+                <li ngbNavItem="public">
+                        <a  class="btn btn-lg btn-default" ngbNavLink>Public</a>
+
+                
+<ng-template ngbNavContent>
+   
+
+	<div class="justify-content-center">
+	<button style="width:50%"  class="btn btn-lg btn-default"  (click)="previousPost()">previous</button> 
+        <button   style="width:50%" class="btn btn-lg btn-default"  (click)="nextPost()">next</button>
+	</div>
+
+	<div style="padding:40px">
+    <h4>{{ currentPost.title }}</h4> <br>
+    <p>{{ currentPost.body }}</p>
+  </div>
+</ng-template>
 
 
-
-Public Posts
-
-
-
-
-
-				</p>
-			</ng-template>
 		</li>
-		<li ngbNavItem="about">
-			<a  type="button" class="btn btn-outline-dark" ngbNavLink>About</a>
-			<ng-template ngbNavContent>
-				<p>
-				About placeholder
-				</p>
-			</ng-template>
-		</li>
-		<li ngbNavItem="register">
-			<a  type="button" class="btn btn-outline-dark" ngbNavLink>Private</a>
-			<ng-template ngbNavContent>
-		  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
-      <div class="form-group">
-        <label for="email"></label>
-        <input type="email" class="form-control" id="email" name="email" ngModel>
-      </div>
-      <div class="form-group">
-        <label for="password"></label>
-        <input type="password" class="form-control" id="password" name="password" ngModel><hr />
-      </div>
-      <br>
-      <button  type="submit" class="btn btn-outline-primary" >Enter</button>
-    </form>
-			</ng-template>
-		</li>
-	</ul>
+                <li ngbNavItem="about">
+                        <a  class="btn btn-lg btn-default" ngbNavLink>About</a>
+                        <ng-template ngbNavContent>
+                                <div style="padding:100px">
+					<h4>
+				As technology advances rapidly, it is essential to understand the impact on healthcare. The integration of Large Language Models (LLMs) and Robotics has the potential to transform the delivery of healthcare services and enhance patient outcomes. LLMs excel in natural language processing and have various applications in healthcare, such as medical coding and clinical decision support. Robotics can bring advanced intelligence capabilities directly to patients, improving the care experience. The collection of care delivery information through these technologies can revolutionize diagnosis and treatment. This blog will delve into the integration of these technologies, examining the challenges and opportunities they present and discussing solutions to overcome them.
+                               
+				</h4>
+				</div>
+                        </ng-template>
+                </li>
+                <li ngbNavItem="private">
+                        <a  class="btn btn-lg btn-default" ngbNavLink>Private</a>
+                        <ng-template ngbNavContent>
+ <div class="d-flex flex-wrap justify-content-center">
+        <button style="width:40%" class="btn btn-md btn-default" (click)="clearPin()">Clear</button>
+        <button style="width:40%" class="btn btn-md btn-default" (click)="submitPin()">Submit</button>
+    </div>
 
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
+<div class="d-flex flex-wrap justify-content-center">
+    <div *ngFor="let row of rows; index as i">
+        <div class="p-2">
+            <button class="btn btn-lg btn-default" (click)="enterPin(i*3 + j + 1)" *ngFor="let col of cols; index as j">{{i*3 + j + 1}}</button>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 10px">
+    <div class="d-flex flex-wrap justify-content-center">
+        <h4>{{pin}}</h4>
+    </div>
+</div>
+
+<div *ngIf="showInputs">
+    <div style="margin: 20px; padding:40px" class="form-group">
+        <label for="title">Title</label>
+        <textarea class="form-control" id="title" rows="2"></textarea>
+    </div>
+    <div style="margin: 20px; padding: 40px" class="form-group">
+        <label for="body">Body</label>
+        <textarea class="form-control" id="body" rows="8"></textarea>
+    </div>
+    <button class="btn btn-lg btn-default" (click)="submitPost()">Post it!</button>
+
+</div>
+
+
+    </ng-template>
+                </li>
+        </ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>                           
+
+
+
+
+
+
+
+
